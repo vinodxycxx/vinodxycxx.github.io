@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="哈驴 - 专业驴肉美食文化传播与驴肉制品选购指南，提供正宗哈驴驴肉火锅、酱驴肉及驴肉制品的产地介绍、烹饪技巧与健康饮食建议。">
+    <meta name="keywords" content="哈驴, 驴肉, 驴肉火锅, 驴肉制品, 正宗驴肉, 老北京驴肉火烧, 健康饮食">
+    <title>哈驴-正宗驴肉美食文化与选购指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #8B5A2B; /* 驴肉褐 */
+            --secondary-color: #D2691E; /* 焦糖色 */
+            --bg-color: #FDFBF7; /* 米白背景 */
+            --text-color: #333333;
+            --light-text: #666666;
+            --white: #FFFFFF;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(139, 90, 43, 0.1);
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Layout Utilities */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 60px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--light-text);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-cta {
+            background-color: var(--primary-color);
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+
+        .nav-cta:hover {
+            background-color: var(--secondary-color);
+            color: var(--white) !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/seed/luzhuang/1600/900') center/cover no-repeat;
+            color: var(--white);
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--text-color);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .feature-card p {
+            color: var(--light-text);
+            font-size: 0.95rem;
+        }
+
+        /* Product Showcase */
+        .product-showcase {
+            background-color: var(--white);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            box-shadow: var(--shadow);
+        }
+
+        .product-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            background-color: #f0f0f0;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-tag {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+            background-color: rgba(210, 105, 30, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: var(--light-text);
+            margin-bottom: 15px;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .btn-sm {
+            padding: 6px 15px;
+            font-size: 0.85rem;
+            border-radius: 15px;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            background: none;
+            cursor: pointer;
+        }
+
+        .btn-sm:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Culture/Story Section */
+        .culture-section {
+            background-color: var(--bg-color);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .culture-image img {
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .culture-content h2 {
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .culture-content p {
+            margin-bottom: 20px;
+            color: var(--light-text);
+        }
+
+        .check-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-color);
+        }
+
+        .check-list li::before {
+            content: '✔';
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--white);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        details {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        summary {
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: transform 0.3s;
+        }
+
+        details[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        details p {
+            color: var(--light-text);
+            padding-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2C2C2C;
+            color: #ccc;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Simplified for mobile */
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .culture-section {
+                grid-template-columns: 1fr;
+            }
+
+            .culture-image {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span style="font-size: 1.8rem;">🫏</span>
+                哈驴
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#products">精选驴肉</a></li>
+                    <li><a href="#culture">美食文化</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+            <a href="#products" class="nav-cta">立即选购</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>品味地道哈驴，传承中华美食</h1>
+            <p>专注于正宗驴肉制品的发掘与推广，从老北京驴肉火烧到现代营养驴肉火锅，为您呈现高蛋白、低脂肪的健康美味。</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">探索美味</a>
+                <a href="#culture" class="btn btn-outline">了解文化</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="container">
+        <div class="features-grid">
+            <article class="feature-card">
+                <div class="feature-icon">🥩</div>
+                <h3>肉质鲜嫩</h3>
+                <p>精选优质肉驴，肉质紧实，纹理清晰，富含人体所需的多种氨基酸，口感细腻，老少皆宜。</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">🥗</div>
+                <h3>健康营养</h3>
+                <p>驴肉属于高蛋白、低脂肪、低胆固醇肉类，是心脑血管疾病患者的理想滋补食品。</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">🥘</div>
+                <h3>风味独特</h3>
+                <p>遵循传统工艺与现代烹饪技术结合，去腥提香，无论是酱制、红烧还是火锅，风味独特。</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">🚚</div>
+                <h3>新鲜速达</h3>
+                <p>从屠宰到餐桌全程冷链配送，锁住新鲜，确保您收到的每一份驴肉都如现杀般新鲜。</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section-padding product-showcase">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">哈驴精选系列</h2>
+                <p class="section-subtitle">甄选上等食材，匠心制作每一款产品</p>
+            </div>
+
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <article class="product-card">
+                    <img src="https://picsum.photos/seed/luzhuang1/400/300" alt="正宗哈驴酱驴肉" class="product-image">
+                    <div class="product-info">
+                        <span class="product-tag">招牌推荐</span>
+                        <h3 class="product-title">正宗哈驴酱驴肉</h3>
+                        <p class="product-desc">秘制酱料慢火卤制，肉质软烂，咸香适口，可直接切片食用或夹火烧。</p>
+                        <div class="product-footer">
+                            <span class="price">¥128.00</span>
+                            <button class="btn-sm">加入购物车</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 2 -->
+                <article class="product-card">
+                    <img src="https://picsum.photos/seed/luzhuang2/400/300" alt="哈驴驴肉火锅" class="product-image">
+                    <div class="product-info">
+                        <span class="product-tag">季节热销</span>
+                        <h3 class="product-title">哈驴精品驴肉火锅</h3>
+                        <p class="product-desc">精选后腿肉，肉质紧实有嚼劲，汤底鲜美，是家庭聚餐的绝佳选择。</p>
+                        <div class="product-footer">
+                            <span class="price">¥168.00</span>
+                            <button class="btn-sm">加入购物车</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 3 -->
+                <article class="product-card">
+                    <img src="https://picsum.photos/seed/luzhuang3/400/300" alt="哈驴驴肉干" class="product-image">
+                    <div class="product-info">
+                        <span class="product-tag">休闲零食</span>
+                        <h3 class="product-title">五香驴肉干</h3>
+                        <p class="product-desc">传统工艺风干，肉质紧实有嚼劲，越嚼越香，追剧必备休闲零食。</p>
+                        <div class="product-footer">
+                            <span class="price">¥58.00</span>
+                            <button class="btn-sm">加入购物车</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 4 -->
+                <article class="product-card">
+                    <img src="https://picsum.photos/seed/luzhuang4/400/300" alt="哈驴驴肉火烧" class="product-image">
+                    <div class="product-info">
+                        <span class="product-tag">经典小吃</span>
+                        <h3 class="product-title">老北京哈驴火烧</h3>
+                        <p class="product-desc">外皮酥脆，内馅鲜香，搭配秘制驴肉，一口下去满足感爆棚。</p>
+                        <div class="product-footer">
+                            <span class="price">¥12.00</span>
+                            <button class="btn-sm">加入购物车</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section id="culture" class="section-padding">
+        <div class="container culture-section">
+            <div class="culture-image">
+                <img src="https://picsum.photos/seed/luzhuang_culture/600/400" alt="驴肉美食文化">
+            </div>
+            <div class="culture-content">
+                <h2>哈驴：传承百年的肉食文化</h2>
+                <p>俗话说：“天上龙肉，地上驴肉”。哈驴致力于挖掘这一传统美食的文化内涵。驴肉不仅口感极佳，更在中医食疗中占有重要地位。</p>
+                <p>我们坚持选用散养肉驴，从源头把控品质。每一份哈驴产品，都承载着对传统工艺的尊重和对食客健康的承诺。</p>
+                <ul class="check-list">
+                    <li>严选散养肉驴，拒绝速成饲料</li>
+                    <li>传统工艺与现代技术完美融合</li>
+                    <li>全链路冷链物流，确保新鲜</li>
+                    <li>提供专业的烹饪指导与食谱</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section-padding faq-section">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">常见问题</h2>
+                <p class="section-subtitle">关于哈驴产品与服务的解答</p>
+            </div>
+            <div class="faq-container">
+                <details>
+                    <summary>哈驴的驴肉来源哪里？</summary>
+                    <p>我们与正规养殖基地合作，选用经过检疫合格的散养肉驴，确保肉质新鲜安全，无抗生素残留。</p>
+                </details>
+                <details>
+                    <summary>收到货后如何保存？</summary>
+                    <p>收到产品后请立即冷藏保存（0-4℃），开封后建议尽快食用或密封冷冻保存。驴肉干等干制品请置于阴凉干燥处。</p>
+                </details>
+                <details>
+                    <summary>驴肉吃起来腥味重吗？</summary>
+                    <p>正宗的哈驴产品经过多重去腥处理，口感鲜香，不会有大腥味。烹饪时建议搭配葱、姜、料酒等去腥调料。</p>
+                </details>
+                <details>
+                    <summary>支持哪些配送方式？</summary>
+                    <p>目前支持全国大部分地区配送，采用顺丰冷运或专业冷链物流，确保运输过程中温度恒定，保证品质。</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>关于哈驴</h4>
+                    <p style="font-size: 0.9rem; line-height: 1.8;">哈驴专注于正宗驴肉美食的推广与销售，致力于让更多人了解并喜爱这一传统美食，提供健康、美味的肉食选择。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#home">回到首页</a></li>
+                        <li><a href="#products">产品中心</a></li>
+                        <li><a href="#culture">美食文化</a></li>
+                        <li><a href="#faq">帮助中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>产品分类</h4>
+                    <ul>
+                        <li><a href="#">酱驴肉系列</a></li>
+                        <li><a href="#">驴肉火锅</a></li>
+                        <li><a href="#">驴肉干零食</a></li>
+                        <li><a href="#">驴肉火烧</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li>电话：400-123-4567</li>
+                        <li>邮箱：contact@halu.com</li>
+                        <li>地址：中国·美食之都特色食品产业园</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 哈驴美食文化有限公司 版权所有 | 仅供演示使用</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
