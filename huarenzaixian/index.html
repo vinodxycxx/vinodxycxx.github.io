@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华人在线-全球华人社区与资讯聚合平台</title>
+    <meta name="description" content="华人在线致力于为全球华人提供最新的时事资讯、文化动态、生活服务及互助社区。连接海内外，弘扬中华文化，服务海外华人生存与发展。">
+    <meta name="keywords" content="华人在线,海外华人,华人社区,华人资讯,海外生活,华人互助">
+    <style>
+        :root {
+            --primary-color: #c8102e; /* 华人红 */
+            --primary-dark: #a00d26;
+            --secondary-color: #f8f9fa;
+            --text-main: #333333;
+            --text-light: #666666;
+            --text-muted: #999999;
+            --border-color: #e5e5e5;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --container-width: 1200px;
+            --header-height: 70px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            background-color: #ffffff;
+            padding-top: var(--header-height);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 顶部导航 */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        .main-nav a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .main-nav a.active {
+            color: var(--primary-color);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--secondary-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            width: 300px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .search-box button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        /* 首屏 Hero */
+        .hero {
+            background: linear-gradient(135deg, #fff0f0 0%, #ffffff 100%);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background-color: white;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* 核心板块 */
+        .section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-size: 28px;
+            font-weight: 700;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .section-title h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 24px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        /* 资讯卡片 */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .news-img {
+            height: 200px;
+            width: 100%;
+            background-color: #eee;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-tag {
+            display: inline-block;
+            font-size: 12px;
+            color: var(--primary-color);
+            background: #fff0f0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .news-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .news-meta {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* 服务板块 */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .service-item {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .service-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        .service-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .service-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .service-desc {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* 专题区域 */
+        .topic-section {
+            background-color: var(--secondary-color);
+        }
+
+        .topic-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .topic-main {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .topic-list-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .topic-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .topic-img {
+            width: 120px;
+            height: 90px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .topic-info h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .topic-info p {
+            font-size: 13px;
+            color: var(--text-light);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .topic-sidebar h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-list-sm li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .topic-list-sm a {
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        .topic-list-sm a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        /* 常见问题 */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .faq-question {
+            padding: 20px 0;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 20px;
+        }
+
+        /* 页脚 */
+        .site-footer {
+            background-color: #2c2c2c;
+            color: #ccc;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            color: white;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 992px) {
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .service-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .topic-container {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                gap: 15px;
+                height: auto;
+                padding: 15px 0;
+            }
+            .main-nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+            .search-box {
+                width: 100%;
+            }
+            .hero h1 {
+                font-size: 28px;
+            }
+            .news-grid, .service-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#c8102e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="#c8102e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="#c8102e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>华人在线</span>
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">时事新闻</a></li>
+                    <li><a href="#">海外生活</a></li>
+                    <li><a href="#">华人社区</a></li>
+                    <li><a href="#">法律税务</a></li>
+                    <li><a href="#">求职招聘</a></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="搜索华人资讯、政策或服务...">
+                <button type="button">🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>连接全球华人，共享信息桥梁</h1>
+                <p>无论您身在何处，华人在线为您提供最新的时政动态、实用的海外生活指南以及互助交流平台，助您在异国他乡安居乐业。</p>
+                <div class="cta-group">
+                    <a href="#" class="btn btn-primary">加入社区</a>
+                    <a href="#" class="btn btn-outline">浏览资讯</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心服务 -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>核心服务</h2>
+                        <p>全方位解决海外华人生活与发展的实际需求</p>
+                    </div>
+                </div>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <div class="service-icon">📰</div>
+                        <h3 class="service-title">时事资讯</h3>
+                        <p class="service-desc">及时更新国内外重大新闻，聚焦华人关注热点。</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">🛂</div>
+                        <h3 class="service-title">签证移民</h3>
+                        <p class="service-desc">提供各国签证政策解读、移民流程及法律咨询。</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">💼</div>
+                        <h3 class="service-title">就业创业</h3>
+                        <p class="service-desc">发布华人企业招聘信息，分享创业成功经验。</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">🛒</div>
+                        <h3 class="service-title">华人商城</h3>
+                        <p class="service-desc">精选中国优质商品，海外直邮，乡情味更浓。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 热门资讯 -->
+        <section class="section topic-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>热门资讯</h2>
+                        <p>读懂时事，把握先机</p>
+                    </div>
+                    <a href="#" style="color: var(--primary-color); font-size: 14px; font-weight: 500;">查看更多 &rarr;</a>
+                </div>
+                <div class="news-grid">
+                    <article class="news-card">
+                        <img src="https://picsum.photos/seed/news1/400/250" alt="新闻配图" class="news-img">
+                        <div class="news-content">
+                            <span class="news-tag">海外生活</span>
+                            <h3 class="news-title">2024年各国华人春节习俗与庆祝活动全指南</h3>
+                            <div class="news-meta">
+                                <span>2024-02-10</span>
+                                <span>阅读 1.2k</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <img src="https://picsum.photos/seed/news2/400/250" alt="新闻配图" class="news-img">
+                        <div class="news-content">
+                            <span class="news-tag">政策解读</span>
+                            <h3 class="news-title">美国最新移民排期更新：EB-2/EB-3类别分析</h3>
+                            <div class="news-meta">
+                                <span>2024-02-09</span>
+                                <span>阅读 3.5k</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <img src="https://picsum.photos/seed/news3/400/250" alt="新闻配图" class="news-img">
+                        <div class="news-content">
+                            <span class="news-tag">职场发展</span>
+                            <h3 class="news-title">海外华人如何在数字经济时代提升竞争力？</h3>
+                            <div class="news-meta">
+                                <span>2024-02-08</span>
+                                <span>阅读 890</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 专题专栏 -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>专题专栏</h2>
+                        <p>深度内容，实用干货</p>
+                    </div>
+                </div>
+                <div class="topic-container">
+                    <div class="topic-main">
+                        <div class="topic-list-item">
+                            <img src="https://picsum.photos/seed/topic1/200/150" alt="专题图" class="topic-img">
+                            <div class="topic-info">
+                                <h3>【专题】海外华人权益保护手册</h3>
+                                <p>从法律援助到社区互助，全方位解析海外华人可能遇到的法律风险及应对措施，保护您的合法权益。</p>
+                            </div>
+                        </div>
+                        <div class="topic-list-item">
+                            <img src="https://picsum.photos/seed/topic2/200/150" alt="专题图" class="topic-img">
+                            <div class="topic-info">
+                                <h3>【专题】温哥华/纽约/伦敦租房避坑指南</h3>
+                                <p>汇集真实租房案例，分析中介套路，提供找房技巧，帮助海外新移民快速安家。</p>
+                            </div>
+                        </div>
+                        <div class="topic-list-item">
+                            <img src="https://picsum.photos/seed/topic3/200/150" alt="专题图" class="topic-img">
+                            <div class="topic-info">
+                                <h3>【专题】中餐出海：餐饮创业实战分享</h3>
+                                <p>多位成功华人餐饮老板的经验谈，从选址、装修到运营管理，助您打造本土化中餐厅。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <aside class="topic-sidebar">
+                        <h3>热门话题</h3>
+                        <ul class="topic-list-sm">
+                            <li><a href="#"># 2024年护照更新流程</a></li>
+                            <li><a href="#"># 留学生回国就业趋势</a></li>
+                            <li><a href="#"># 海外投资房产指南</a></li>
+                            <li><a href="#"># 跨境电商创业机会</a></li>
+                            <li><a href="#"># 华人联谊活动汇总</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- 常见问题 FAQ -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>常见问题</h2>
+                        <p>解答您的疑惑，助您快速上手</p>
+                    </div>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">如何注册成为华人在线会员？</div>
+                        <div class="faq-answer">
+                            注册非常简单，点击首页右上角的“加入社区”按钮，使用邮箱或手机号进行验证即可。注册后您可以发布帖子、参与讨论并享受更多个性化服务。
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">海外华人如何发布商业广告？</div>
+                        <div class="faq-answer">
+                            我们为会员提供专门的商业推广通道。您可以联系客服或登录后台查看“企业服务”板块，了解详细的收费标准和发布流程。
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">网站上的资讯来源是否可靠？</div>
+                        <div class="faq-answer">
+                            我们非常重视信息的真实性。所有新闻资讯均经过编辑团队人工筛选与核实，确保内容准确、客观，符合华人读者的阅读习惯。
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">遇到法律或税务问题怎么办？</div>
+                        <div class="faq-answer">
+                            虽然我们提供资讯服务，但建议您在遇到具体问题时，咨询专业的华人律师或会计师。我们网站设有“法律税务”专栏，提供相关资源链接。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>华人在线</h3>
+                    <p>致力于打造最值得信赖的全球华人信息枢纽，连接每一位海外游子的心。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">平台介绍</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">联系方式</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>服务栏目</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">签证移民</a></li>
+                        <li><a href="#">房产资讯</a></li>
+                        <li><a href="#">二手市场</a></li>
+                        <li><a href="#">求职招聘</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">Facebook 社群</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2024 华人在线 版权所有 | 京ICP备XXXXXXXX号
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <script>
+        // 简单的FAQ折叠交互
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                item.querySelector('.faq-question').addEventListener('click', () => {
+                    // 关闭其他打开的项
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // 切换当前项
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+                  </html>
